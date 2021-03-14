@@ -3,29 +3,35 @@
 3) Write u-boot to sd-card
 4) On host run tftp and nfsv3 (see your distro wiki)
 5) Create bootscript file. Example:
-    setenv tftp_dir zed
-    setenv nfs_rfs /srv/nfs/zed
+  setenv tftp_dir zed
+  setenv nfs_rfs /srv/nfs/zed
 
-    setenv bootargs ip=dhcp
-    setenv bootargs ${bootargs} console=ttyPS0,115200n8
+  setenv bootargs ip=dhcp
+  setenv bootargs ${bootargs} console=ttyPS0,115200n8 
 
-    setenv nfs_ip 192.168.100.7
-    setenv bootargs ${bootargs} root=/dev/nfs rootfstype=nfs nfsroot=${nfs_ip}:${nfs_rfs},port=2049,nfsvers=3,tcp rw loglevel=8 nfsrootdebug
+  setenv nfs_ip 192.168.100.7
+  setenv bootargs ${bootargs} root=/dev/nfs rootfstype=nfs nfsroot=${nfs_ip}:${nfs_rfs},port=2049,nfsvers=3,tcp rw loglevel=8 nfsrootdebug
 
-    setenv devicetree_image system.dtb
-    setenv devicetree_addr 0x2A00000
-    setenv devicetree_tftp 'tftpboot ${devicetree_addr} ${tftp_dir}/${devicetree_image}'
+  setenv bitstream_image 'fpga.bin'
+  setenv bitstream_addr 0x4000000
+  setenv bitstream_tftp 'tftpboot ${bitstream_addr} ${tftp_dir}/${bitstream_image}'
+  setenv bitstream_load 'fpga load 0 ${bitstream_addr} ${filesize}'
 
-    setenv kernel_image uImage
-    setenv kernel_addr 0x3000000
-    setenv kernel_tftp 'tftpboot ${kernel_addr} ${tftp_dir}/${kernel_image}'
+  setenv devicetree_image system.dtb
+  setenv devicetree_addr 0x2A00000
+  setenv devicetree_tftp 'tftpboot ${devicetree_addr} ${tftp_dir}/${devicetree_image}'
 
-    setenv phy_rst 'mw.w f8000008 df0d ; mw.w f8000140 00100801 ; mw.w f8000004 767b'
-    setenv rset_phy 'run phy_rst'
+  setenv kernel_image uImage
+  setenv kernel_addr 0x3000000
+  setenv kernel_tftp 'tftpboot ${kernel_addr} ${tftp_dir}/${kernel_image}'
 
-    setenv boot_now 'bootm ${kernel_addr} - ${devicetree_addr}'
+  setenv phy_rst 'mw.w f8000008 df0d ; mw.w f8000140 00100801 ; mw.w f8000004 767b'
+  setenv rset_phy 'run phy_rst'
 
-    run kernel_tftp devicetree_tftp rset_phy boot_now
+  setenv boot_now 'bootm ${kernel_addr} - ${devicetree_addr}'
+
+  run bitstream_tftp bitstream_load kernel_tftp devicetree_tftp rset_phy boot_now
+
 
 6) Compile bootscript file by mkimage (uboot-tools package):
     sudo mkimage -A arm -O u-boot -T script -C none -a 0 -e 0 -n "t-Boot Script" -d bootscr.txt /srv/tftp/boot.scr
