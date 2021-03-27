@@ -1,0 +1,23 @@
+* Файлы .bin, генерируемые vivado, почему-то не подходят для прошивки fpga через linux fpga manager. Однако, они подходят для прошивки через uboot.
+* Для генерации поддерживаемого файла необходимо:
+    ** Установить окружение vivado для сессии:
+         source {Vivado_install_dir}/settings64.sh 
+    ** Create .bif file for your bitstream with the following content:
+         all:
+         {
+          ./{Bitstream_name}.bit
+         }
+
+    ** Использовать bootgen для генерации:
+       bootgen -arch zynq -image bitstream.bif -process_bitstream bin
+       
+       
+* Для поддержки fpga в ванильном ядре необходимо собрать для него следующие драйверы, найти которые можно в официальной репе xlnx-linux: zynq-fpga и fpga-mgr, на всякий случай я собрал ещё fpga-bridge, of-fpga-region и fpga-region. Для сборки помимо исходников понадобятся заголовочники ( можно найти в linux-xilinx/include/linux/fpga/ ) от этих драйверов, так как находящиеся в mainline-репе не подходят. Исходники драйверов также необходимо поправить, указав путь до этих заголовков.
+
+То есть вместо:
+#include <linux/fpga/fpga-mgr.h>
+
+можно задать:
+#include "fpga-mgr.h"
+
+Технически, можно просто подменить эти файлы в исходниках, но лучше написать скрипт для сборки.
