@@ -91,6 +91,11 @@ openocd -f interface/jlink.cfg -c 'adapter speed 1000' -f target/gd32vf103.cfg
 ```
 ![GD32VF103](https://i.imgur.com/e3EHPHU.png)
 
+#### STM32F103 (Blue Pill)
+```sh
+openocd -f interface/jlink.cfg -c 'transport select swd' -c 'adapter speed 1000' -f target/stm32f1x.cfg
+```
+![image](https://user-images.githubusercontent.com/51079120/117218401-b802da00-ae0b-11eb-9e19-4d26dbe723ba.png)
 
 
 ## Работа с OpenOCD через GDB
