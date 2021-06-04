@@ -13,21 +13,21 @@ podman run --interactive --tty \
 ```
 
 Пояснение параметров:
-**run** - Создать контейнер и запустить его немедленно
-**–interactive** - Открыть терминал в только что созданном контейнере
-**–tty** - Создать новый терминал внутри контейнера, т.е открыть потоки stdin/stdout
-**–name mycontainer** - Дать контейнеру требуемое имя
-**–volume /tmp/.X11-unix:/tmp/.X11-unix** - Отмапить X11 сокет для доступа к иксам из контейнера
-**–env DISPLAY** - Задать переменную DISPLAY для сессии
-**–device /dev/dri** - Даёт доступ к 3Д ускорителям
-**–device /dev/snd** - Даёт доступ к звуковым устройствам
-**–device /dev/input** - Даёт доступ к устройствам ввода, например, к геймпадам
-**–volume /etc/localtime:/etc/localtime:ro** Отмапить /etc/localtime внутрь контейнера, чтобы получить время как на хосте
-**–volume /home/$(whoami)/sharing:/mnt** - Отмапить папку ~/share в /mnt внутри контейнера
-**ubuntu:latest** - Используемый образ
+* **run** - Создать контейнер и запустить его немедленно
+* **–interactive** - Открыть терминал в только что созданном контейнере
+* **–tty** - Создать новый терминал внутри контейнера, т.е открыть потоки stdin/stdout
+* **–name mycontainer** - Дать контейнеру требуемое имя
+* **–volume /tmp/.X11-unix:/tmp/.X11-unix** - Отмапить X11 сокет для доступа к иксам из контейнера
+* **–env DISPLAY** - Задать переменную DISPLAY для сессии
+* **–device /dev/dri** - Даёт доступ к 3Д ускорителям
+* **–device /dev/snd** - Даёт доступ к звуковым устройствам
+* **–device /dev/input** - Даёт доступ к устройствам ввода, например, к геймпадам
+* **–volume /etc/localtime:/etc/localtime:ro** Отмапить /etc/localtime внутрь контейнера, чтобы получить время как на хосте
+* **–volume /home/$(whoami)/sharing:/mnt** - Отмапить папку ~/share в /mnt внутри контейнера
+* **ubuntu:latest** - Используемый образ
 
 Дополнительные часто используемые параметры:
-**-privileged** - Запуск контейнера без дополнительных блокировок ("security" lockdown). Позволяет, например, использовать ping.
+* **-privileged** - Запуск контейнера без дополнительных блокировок ("security" lockdown). Позволяет, например, использовать ping.
 _ **Примечание**: В случае с Podman, запуск контейнера в этом режиме не означает, что контейнер получит больше привилегий, чем пользователь, запустивший процесс._
 
 _ **Примечание**: "The bottom line is that using the --privileged flag does not tell the container engines to add additional security constraints. The --privileged flag does not add any privilege over what the processes launching the containers have. Tools like Podman and Buildah do NOT give any additional access beyond the processes launched by the user."_
@@ -48,7 +48,7 @@ root   305   1      0.000   3m35.220609764s   pts/0   0s     htop
 ```
 
 Описание параметров:
-**-latest** - последний запущенный контейнер. 
+* **-latest** - последний запущенный контейнер. 
 
 
 Списком параметров можно управлять
