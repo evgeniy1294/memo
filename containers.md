@@ -28,11 +28,11 @@ podman run --interactive --tty \
 
 Дополнительные часто используемые параметры:
 * **-privileged** - Запуск контейнера без дополнительных блокировок ("security" lockdown). Позволяет, например, использовать ping.
-_ **Примечание**: В случае с Podman, запуск контейнера в этом режиме не означает, что контейнер получит больше привилегий, чем пользователь, запустивший процесс._
+**Примечание**: _В случае с Podman, запуск контейнера в этом режиме не означает, что контейнер получит больше привилегий, чем пользователь, запустивший процесс._
 
-_ **Примечание**: "The bottom line is that using the --privileged flag does not tell the container engines to add additional security constraints. The --privileged flag does not add any privilege over what the processes launching the containers have. Tools like Podman and Buildah do NOT give any additional access beyond the processes launched by the user."_
+**Примечание**: _"The bottom line is that using the --privileged flag does not tell the container engines to add additional security constraints. The --privileged flag does not add any privilege over what the processes launching the containers have. Tools like Podman and Buildah do NOT give any additional access beyond the processes launched by the user."_
  
-_ **Примечание**: Docker запускается как демон, поэтому для него всё может быть иначе_
+**Примечание**: _Docker запускается как демон, поэтому для него всё может быть иначе_
 
 
 
