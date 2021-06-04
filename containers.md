@@ -27,7 +27,7 @@ podman run --interactive --tty \
 * **ubuntu:latest** - Используемый образ
 
 Дополнительные часто используемые параметры:
-* **-privileged** - Запуск контейнера без дополнительных блокировок ("security" lockdown). Позволяет, например, использовать ping.
+* **-privileged** - Запуск контейнера без дополнительных блокировок ("security" lockdown). Позволяет, например, использовать ping из контейнера.
 
 **Примечание**: _В случае с Podman, запуск контейнера в этом режиме не означает, что контейнер получит больше привилегий, чем пользователь, запустивший процесс._
 
@@ -37,8 +37,9 @@ podman run --interactive --tty \
 
 
 
-##Часто используемые команды движка Podman
-#### top
+
+## Часто используемые команды движка Podman
+### top
 Позволяет посмотреть список запущенных контейнерами процессов. Требует ID контейнера.
 
 ```sh
@@ -61,7 +62,7 @@ PID   SECCOMP    COMMAND      %CPU
 ```
 
 
-#### container
+### container
 Управление контейнерами
 
 ```sh
@@ -80,7 +81,7 @@ c5cc51791620  ubuntu:latest  /bin/bash  9 minutes ago   Up 9 minutes ago        
 ```
 
 
-#### exec
+### exec
 Выполняет команду в запущенном контейнере.
 
 Подключиться к контейнеру как root:
@@ -94,7 +95,7 @@ podman exec --interactive --tty --user $(whoami) --workdir /home/$(whoami) mycon
 ```
 
 
-### Troubleshooting
+## Troubleshooting
 Попытка запуска GUI приложений в контейнере может привести к следующей проблеме:
 ```sh
 root@c5cc51791620:/# galculator 
@@ -106,7 +107,7 @@ Unable to init server: Could not connect: Connection refused
 
 Одна из причин, по которой это может произойти состоит в том, что X-сервер хоста запрещает внешние подключение. Их требуется разрешить:
 ```sh
-sudo xhost +
+xhost +
 access control disabled, clients can connect from any host
 ```
 
