@@ -94,6 +94,10 @@ podman exec --interactive --tty mycontainer /bin/bash
 podman exec --interactive --tty --user $(whoami) --workdir /home/$(whoami) mycontainer /bin/bash
 ```
 
+### pull
+Загрузка образов. Например, загрузка с docker hub.
+podman pull docker.io/library/debian:buster-slim
+
 
 ## Troubleshooting
 Попытка запуска GUI приложений в контейнере может привести к следующей проблеме:
