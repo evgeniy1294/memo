@@ -124,7 +124,7 @@ access control disabled, clients can connect from any host
 
 Пробросить все порты, предоставленные в Dockerfile или добавленные при сборке:
 ```sh
-podman container run -P nginx
+$ podman container run -P nginx
 ```
 Каждый открытый порт будет напрямую привязан к случайному порту хоста. Список проброшенных портов можно посмотреть:
 ```sh
@@ -134,7 +134,7 @@ $ podman container port nginx
 
 Пробрасывать все порты может быть не очень хорошей идеей. Альтернативный вариант - проброс определенного порта:
 ```sh
-podman container run -p 127.0.0.1:8000:80 nginx
+$ podman container run -p 127.0.0.1:8000:80 nginx
 ```
 По-умолчанию контейнерные порты будут привязаны к ip 0.0.0.0
 
