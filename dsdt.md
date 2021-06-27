@@ -1,4 +1,4 @@
-#Памятка по работе с DSDT
+# Памятка по работе с DSDT
 
 DSDT (Differentiated System Description Table) является частью стандарта ACPI, содержит в себе информацию о системе питания.
 
