@@ -80,6 +80,29 @@ c75811b4d26e  ubuntu         /bin/bash  29 minutes ago  Exited (0) 29 minutes ag
 c5cc51791620  ubuntu:latest  /bin/bash  9 minutes ago   Up 9 minutes ago                     mycontainer
 ```
 
+### export/import
+Экспортирование/импортирование образа файловой системы контейнера. Из получнного образа можно создать контейнер на другой машине. 
+**Примечание**: _Podman не умеет делать чекпоинты "non root"-контейнеров. export/import частичная альтернатива_
+
+```sh
+podman export -o myubi.tar a6a6d4896142
+```
+
+```sh
+$ podman import myubi.tar myubi-imported
+Getting image source signatures
+Copying blob 277cab30fe96 done
+Copying config c296689a17 done
+Writing manifest to image destination
+Storing signatures
+c296689a17da2f33bf9d16071911636d7ce4d63f329741db679c3f41537e7cbf
+```
+
+```sh
+$ podman images
+REPOSITORY                              TAG     IMAGE ID      CREATED         SIZE
+docker.io/library/myubi-imported       latest  c296689a17da  51 seconds ago  211 MB
+```
 
 ### exec
 Выполняет команду в запущенном контейнере.
